@@ -1,0 +1,218 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flores amarillas 🌻</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: radial-gradient(circle at bottom, #183b29, #07120e 75%);
+    overflow: hidden;
+    font-family: Georgia, serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+}
+
+h1 {
+    color: #ffe66d;
+    font-size: 30px;
+    text-align: center;
+    text-shadow: 0 0 15px #ffca28;
+    animation: aparecer 3s infinite alternate;
+    z-index: 2;
+}
+
+.mensaje {
+    margin-top: 12px;
+    color: #fff4bd;
+    font-size: 16px;
+    text-align: center;
+    z-index: 2;
+}
+
+.jardin {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 65%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-end;
+}
+
+.flor {
+    position: relative;
+    width: 100px;
+    height: 280px;
+    animation: balanceo 3s ease-in-out infinite alternate;
+    transform-origin: bottom;
+}
+
+.flor:nth-child(2) {
+    animation-delay: .5s;
+    transform: scale(1.2);
+}
+
+.flor:nth-child(3) {
+    animation-delay: 1s;
+}
+
+.tallo {
+    position: absolute;
+    width: 7px;
+    height: 160px;
+    background: linear-gradient(to right, #236b36, #62b84b);
+    bottom: 0;
+    left: 47px;
+    border-radius: 10px;
+}
+
+.hoja {
+    position: absolute;
+    width: 45px;
+    height: 20px;
+    background: #43a047;
+    border-radius: 100% 0 100% 0;
+    bottom: 75px;
+    left: 5px;
+    transform: rotate(20deg);
+}
+
+.hoja.derecha {
+    left: 48px;
+    bottom: 110px;
+    transform: rotate(-35deg) scaleX(-1);
+}
+
+.cabeza {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    top: 15px;
+    left: 0;
+    animation: girar 15s linear infinite;
+}
+
+.petalo {
+    position: absolute;
+    width: 27px;
+    height: 43px;
+    background: linear-gradient(#fff36b, #ffb900);
+    border-radius: 50%;
+    left: 36px;
+    top: 0;
+    transform-origin: 14px 50px;
+    box-shadow: 0 0 10px #ffdb4d;
+}
+
+.centro {
+    position: absolute;
+    width: 37px;
+    height: 37px;
+    background: radial-gradient(#9c5718, #42200b);
+    border: 3px solid #e7a52d;
+    border-radius: 50%;
+    top: 32px;
+    left: 32px;
+    z-index: 2;
+}
+
+@keyframes balanceo {
+    from { transform: rotate(-5deg); }
+    to { transform: rotate(5deg); }
+}
+
+@keyframes girar {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes aparecer {
+    from { opacity: .6; }
+    to { opacity: 1; }
+}
+
+.estrella {
+    position: absolute;
+    color: #fff4a3;
+    animation: brillar 2s infinite alternate;
+}
+
+@keyframes brillar {
+    from { opacity: .2; }
+    to { opacity: 1; }
+}
+</style>
+</head>
+
+<body>
+
+<h1>🌼 Flores para ti 🌼</h1>
+<p class="mensaje">Que nunca te falten motivos para sonreír.</p>
+
+<div class="jardin" id="jardin"></div>
+
+<script>
+const jardin = document.getElementById("jardin");
+
+for (let i = 0; i < 3; i++) {
+    const flor = document.createElement("div");
+    flor.className = "flor";
+
+    const cabeza = document.createElement("div");
+    cabeza.className = "cabeza";
+
+    for (let j = 0; j < 12; j++) {
+        const petalo = document.createElement("div");
+        petalo.className = "petalo";
+        petalo.style.transform = `rotate(${j * 30}deg)`;
+        cabeza.appendChild(petalo);
+    }
+
+    const centro = document.createElement("div");
+    centro.className = "centro";
+    cabeza.appendChild(centro);
+
+    const tallo = document.createElement("div");
+    tallo.className = "tallo";
+
+    const hoja1 = document.createElement("div");
+    hoja1.className = "hoja";
+
+    const hoja2 = document.createElement("div");
+    hoja2.className = "hoja derecha";
+
+    flor.appendChild(cabeza);
+    flor.appendChild(tallo);
+    flor.appendChild(hoja1);
+    flor.appendChild(hoja2);
+
+    jardin.appendChild(flor);
+}
+
+// Crear estrellas
+for (let i = 0; i < 35; i++) {
+    const estrella = document.createElement("div");
+    estrella.className = "estrella";
+    estrella.textContent = "✦";
+    estrella.style.left = Math.random() * 100 + "%";
+    estrella.style.top = Math.random() * 65 + "%";
+    estrella.style.animationDelay = Math.random() * 3 + "s";
+    document.body.appendChild(estrella);
+}
+</script>
+
+</body>
+</html>
+)
